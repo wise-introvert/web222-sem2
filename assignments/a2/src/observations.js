@@ -335,8 +335,24 @@ function getObservationsById(data, ...ids) {
  * Use the Array .filter() function in your solution.
  ******************************************************************************/
 
-function getObservationsByPositionalAccuracy(data, options = {}) {
-  // TODO
+function getObservationsByPositionalAccuracy({ results }, options = {}) {
+  if (Object.keys(options).length <= 0) {
+    return results;
+  }
+  const operations = Object.keys(options);
+  return results.filter(({ positional_accuracy }) => {
+    if (operations.indexOf('eq') >= 0) {
+      return positional_accuracy == options.eq;
+    } else if (operations.indexOf('gt') >= 0 && operations.indexOf('lt') >= 0) {
+      return positional_accuracy >= options.gt && positional_accuracy <= options.lt;
+    } else if (operations.indexOf('gt') >= 0) {
+      return positional_accuracy >= options.gt;
+    } else if (operations.indexOf('lt') >= 0) {
+      return positional_accuracy <= options.lt;
+    } else {
+      return results;
+    }
+  });
 }
 
 /*******************************************************************************
