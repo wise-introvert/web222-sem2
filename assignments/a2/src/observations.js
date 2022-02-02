@@ -194,8 +194,31 @@ function observationsByGeoPrivacy(data, geoPrivacy) {
  *   user: '@dridgen'                        // the user's login_exact name with @ prefix added
  * }
  ******************************************************************************/
-function transformObservation(original) {
-  // TODO
+
+function transformObservation({
+  quality_grade,
+  id,
+  species_guess: speciesGuess,
+  location,
+  photos,
+  research,
+  user: { login_exact }
+}) {
+  const _photos = photos ? photos.map((photo) => photo.url) : [];
+  const modified = {
+    id,
+    speciesGuess,
+    isResearchQuality: quality_grade == 'research',
+    coords: location
+      .split(',')
+      .reverse()
+      .map((value) => parseFloat(value)),
+    photos: _photos,
+    photosCount: photos.length,
+    ...(login_exact && { user: `@${login_exact}` })
+  };
+
+  return modified;
 }
 
 /*******************************************************************************
@@ -214,7 +237,10 @@ function transformObservation(original) {
  *  - return the new Array containing all the transformed Objects
  ******************************************************************************/
 function transformObservations(data) {
-  // TODO
+  const transformed = [];
+  data.results.forEach((result) => transformed.push(transformObservation(result)));
+
+  return transformed;
 }
 
 /*******************************************************************************
@@ -231,7 +257,7 @@ function transformObservations(data) {
  *  - return the Array created by the .map() method
  ******************************************************************************/
 function transformObservations2(data) {
-  // TODO
+  return data.results.map((result) => transformObservation(result));
 }
 
 /*******************************************************************************
