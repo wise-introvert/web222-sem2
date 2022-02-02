@@ -153,7 +153,24 @@ function observationSummary2(data) {
  * Your function should return the newly created Array.
  ******************************************************************************/
 function observationsByGeoPrivacy(data, geoPrivacy) {
-  // TODO
+  if (!/(open|obscured|private|null)/gi.test(String(geoPrivacy))) {
+    throw new Error();
+  }
+
+  let filtered = [];
+  for (const result of data.results) {
+    if (String(geoPrivacy).toLowerCase() == 'null') {
+      console.log(`result.geoprivacy ==> ${result.geoprivacy}\ngeoPrivacy ==> ${geoPrivacy}`);
+    }
+    if (
+      String(geoPrivacy).toLowerCase() == String(result.geoprivacy).toLowerCase() ||
+      (result.geoprivacy && result.geoprivacy.toLowerCase() == String(geoPrivacy).toLowerCase())
+    ) {
+      filtered.push(result);
+    }
+  }
+
+  return filtered;
 }
 
 /*******************************************************************************
