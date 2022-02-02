@@ -534,8 +534,18 @@ function getUserStats({ results }) {
  * When you have processed all results, and collected all unique time zone values,
  * return the Array of time zones.
  */
-function extractTimeZones(data) {
-  // TODO
+function extractTimeZones({ results }) {
+  const timezones = [
+    ...new Set(
+      results.reduce((acc, curr) => {
+        acc.push(curr.created_time_zone);
+        acc.push(curr.observed_time_zone);
+        return acc;
+      }, [])
+    )
+  ];
+
+  return timezones;
 }
 
 /**
@@ -552,8 +562,14 @@ function extractTimeZones(data) {
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
  */
 
-function extractTimeZones2(data) {
-  // TODO
+function extractTimeZones2({ results }) {
+  const timezones = results.reduce((acc, curr) => {
+    acc.add(curr.created_time_zone);
+    acc.add(curr.observed_time_zone);
+    return acc;
+  }, new Set());
+
+  return Array.from(timezones);
 }
 
 // Our unit test files need to access the functions we defined
