@@ -292,10 +292,9 @@ function transformObservations2(data) {
  ******************************************************************************/
 function getObservationsById(data, ...ids) {
   let results = [];
+  ids.forEach((id) => results.push(data.results.find((result) => result.id == id)));
 
-  data.results.forEach((result) => {
-    if (ids.indexOf(result.id) >= 0) results.push(result);
-  });
+  results = results.filter((result) => result != null);
 
   return results.length == 1 ? results[0] : results.length < 1 ? null : results;
   /*
