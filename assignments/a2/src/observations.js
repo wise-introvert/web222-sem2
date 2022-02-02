@@ -398,8 +398,48 @@ function getObservationsByPositionalAccuracy({ results }, options = {}) {
  *
  * Your function should return the new Array of photo size Objects
  ******************************************************************************/
-function getTaxonPhotos(data) {
-  // TODO
+function getTaxonPhotos({ results }) {
+  /*
+    console.log(
+      '=================================================================================================='
+    );
+    console.log(
+      results
+        .filter((result) => !_.isEmpty(_.get(result, 'taxon.default_photo')))
+        .filter((result) => !/flickr/gi.test(_.get(result, 'taxon.default_photo.url'))).length
+    );
+    console.log(
+      '==================================================================================================\n\n'
+    );
+  */
+  return results
+    .map((result) => {
+      return result.taxon && result.taxon.default_photo
+        ? {
+            original: result.taxon.default_photo.url.replace(
+              /\/(square|small|original|medium|large)/gi,
+              '/original'
+            ),
+            square: result.taxon.default_photo.url.replace(
+              /\/(square|small|original|medium|large)/gi,
+              '/square'
+            ),
+            small: result.taxon.default_photo.url.replace(
+              /\/(square|small|original|medium|large)/gi,
+              '/small'
+            ),
+            medium: result.taxon.default_photo.url.replace(
+              /\/(square|small|original|medium|large)/gi,
+              '/medium'
+            ),
+            large: result.taxon.default_photo.url.replace(
+              /\/(square|small|original|medium|large)/gi,
+              '/large'
+            )
+          }
+        : null;
+    })
+    .filter((result) => result != null);
 }
 
 /*******************************************************************************
