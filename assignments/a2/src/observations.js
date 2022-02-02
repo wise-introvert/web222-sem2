@@ -499,8 +499,24 @@ function getTaxonPhotos({ results }) {
  *   }
  * }
  ******************************************************************************/
-function getUserStats(data) {
-  // TODO
+function getUserStats({ results }) {
+  const users = results.map((result) => result.user && result.user);
+  const observations = users.reduce((acc, curr) => acc + curr.observations_count, 0);
+  const journals = users.reduce((acc, curr) => acc + curr.journal_posts_count, 0);
+  const species = users.reduce((acc, curr) => acc + curr.species_count, 0);
+  return {
+    count: users.length,
+    totals: {
+      observations,
+      journals,
+      species
+    },
+    averages: {
+      observations: observations / users.length,
+      journals: journals / users.length,
+      species: species / users.length
+    }
+  };
 }
 
 /**
