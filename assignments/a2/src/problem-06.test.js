@@ -54,7 +54,7 @@ describe('Problem 06 - getTaxonPhotos() function', function () {
   test('real-data should produce the expected result', function () {
     let result = getTaxonPhotos(data);
     expect(Array.isArray(result)).toBe(true);
-    expect(result.length).toBe(9);
+    expect(result.length).toBe(8);
 
     result.forEach((photos) => {
       expect(isUrl(photos.square)).toBe(true);

@@ -201,7 +201,6 @@ function transformObservation({
   species_guess: speciesGuess,
   location,
   photos,
-  research,
   user: { login_exact }
 }) {
   const _photos = photos ? photos.map((photo) => photo.url) : [];
@@ -214,9 +213,12 @@ function transformObservation({
       .reverse()
       .map((value) => parseFloat(value)),
     photos: _photos,
-    photosCount: photos.length,
-    ...(login_exact && { user: `@${login_exact}` })
+    photosCount: photos.length
   };
+
+  if (login_exact) {
+    Object.assign(modified, { user: `@${login_exact}` });
+  }
 
   return modified;
 }
@@ -349,9 +351,8 @@ function getObservationsByPositionalAccuracy({ results }, options = {}) {
       return positional_accuracy >= options.gt;
     } else if (operations.indexOf('lt') >= 0) {
       return positional_accuracy <= options.lt;
-    } else {
-      return results;
     }
+    return results;
   });
 }
 
@@ -399,19 +400,6 @@ function getObservationsByPositionalAccuracy({ results }, options = {}) {
  * Your function should return the new Array of photo size Objects
  ******************************************************************************/
 function getTaxonPhotos({ results }) {
-  /*
-    console.log(
-      '=================================================================================================='
-    );
-    console.log(
-      results
-        .filter((result) => !_.isEmpty(_.get(result, 'taxon.default_photo')))
-        .filter((result) => !/flickr/gi.test(_.get(result, 'taxon.default_photo.url'))).length
-    );
-    console.log(
-      '==================================================================================================\n\n'
-    );
-  */
   return results
     .map((result) => {
       return result.taxon && result.taxon.default_photo
@@ -439,7 +427,8 @@ function getTaxonPhotos({ results }) {
           }
         : null;
     })
-    .filter((result) => result != null);
+    .filter((result) => result != null)
+    .filter((item) => !/.*flickr.*/gi.test(item.original));
 }
 
 /*******************************************************************************
