@@ -1,0 +1,27 @@
+{
+  "name": "web222-assignment-3",
+  "version": "3.0.0",
+  "description": "WEB222 Assignment 3 - HTML",
+  "scripts": {
+    "copy-src": "copyfiles package.json src/**/* src/* submission",
+    "mkdir": "mkdirp submission",
+    "prettier": "prettier --write \"src/**/*.{html,js,css}\"",
+    "server": "serve src",
+    "preprepare-submission": "rimraf submission",
+    "prepare-submission": "run-s -n -c prettier mkdir copy-src zip",
+    "prezip": "rimraf submission.zip",
+    "zip": "bestzip submission.zip submission/*",
+    "test": "npm run server",
+    "start": "npm run server"
+  },
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "bestzip": "2.2.0",
+    "copyfiles": "2.4.1",
+    "mkdirp": "1.0.4",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.5.1",
+    "rimraf": "3.0.2",
+    "serve": "13.0.2"
+  }
+}
