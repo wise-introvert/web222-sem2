@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Change this to your name-->
+    <meta name="author" content="Your Name" />
+
+    <title>WEB222 Store</title>
+    <!-- Classless CSS Stylesheet - https://oxal.org/projects/sakura/ -->
+    <link rel="stylesheet" href="./css/sakura.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <!-- Change this to your Store's info -->
+      <h1>The Store</h1>
+      <p>A really good, catchy slogan that is totally stolen.</p>
+    </header>
+
+    <nav id="menu">
+      <!-- Dynamically create your menu category buttons here -->
+    </nav>
+
+    <hr />
+
+    <main>
+      <h2 id="selected-category">
+        <!-- Dynamically update the selected category title -->
+      </h2>
+
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="category-products">
+          <!-- Dynamically create your product rows here -->
+        </tbody>
+      </table>
+    </main>
+
+    <!-- JavaScript Data Files -->
+    <script src="./js/categories.js"></script>
+    <script src="./js/products.js"></script>
+
+    <!-- Main App JavaScript File -->
+    <script src="./js/app.js"></script>
+  </body>
+</html>
