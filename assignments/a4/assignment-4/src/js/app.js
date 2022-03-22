@@ -8,9 +8,9 @@
  *
  * Please update the following with your information:
  *
- *      Name:       <YOUR_NAME>
- *      Student ID: <YOUR_STUDENT_ID>
- *      Date:       <SUBMISSION_DATE>
+ *      Name:       Fardeen Sohil Panjwani
+ *      Student ID: 119588218
+ *      Date:       22 Mar, '22
  */
 
 // All of our data is available on the global `window` object.
@@ -51,6 +51,22 @@ categories.forEach((category) => {
   document.getElementById("menu").appendChild(e);
 });
 
+products.forEach((product) => {
+  const e = document.createElement("tr");
+  const name = document.createElement("td");
+  name.innerText = product.name;
+  const description = document.createElement("td");
+  description.innerText = product.description;
+  const price = document.createElement("td");
+  price.innerText = `$${(product.price / 100).toLocaleString("en-ca")}`;
+
+  e.appendChild(name);
+  e.appendChild(description);
+  e.appendChild(price);
+
+  document.getElementById("category-products").appendChild(e);
+});
+
 /*
 var config = { childList: true };
 var callback = function (mutationsList) {
@@ -83,19 +99,3 @@ var callback = function (mutationsList) {
 var observer = new MutationObserver(callback);
 observer.observe(document.getElementById("selected-category"), config);
 */
-
-products.forEach((product) => {
-  const e = document.createElement("tr");
-  const name = document.createElement("td");
-  name.innerText = product.name;
-  const description = document.createElement("td");
-  description.innerText = product.description;
-  const price = document.createElement("td");
-  price.innerText = `$${(product.price / 100).toLocaleString("en-ca")}`;
-
-  e.appendChild(name);
-  e.appendChild(description);
-  e.appendChild(price);
-
-  document.getElementById("category-products").appendChild(e);
-});
