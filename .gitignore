@@ -1,3 +1,6 @@
+/*.zip
+**/*.zip
+*/*.zip
 */submission*
 **/submission*
 /submission*
