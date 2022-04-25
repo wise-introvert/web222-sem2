@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+}
+
+body {
+  overflow-x: hidden;
+}
+
+audio {
+  width: 100%;
+}
+
+figcaption {
+  margin: 0;
+  font-size: 0.45rem;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+a {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display';
+  font-weight: 100;
+}
+
+hr {
+  border: 0;
+  height: 2px;
+  background: black;
+  margin-bottom: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 1rem;
+  }
+  button,
+  a {
+    font-size: 0.5rem;
+  }
+}

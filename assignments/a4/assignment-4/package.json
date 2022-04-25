@@ -1,0 +1,25 @@
+{
+  "name": "assignment-4",
+  "private": true,
+  "version": "3.0.0",
+  "description": "WEB222 Assignment 4",
+  "scripts": {
+    "eslint": "eslint src/**/*.js",
+    "prettier": "prettier --write \"src/**/*.{html,css,js}\"",
+    "check": "run-s eslint",
+    "test": "npm run check",
+    "server": "http-server src",
+    "start": "npm run server",
+    "zip": "bestzip assignment-4 src/*",
+    "clean": "rimraf assignment-4.zip",
+    "prepare-submission": "run-s prettier check zip"
+  },
+  "devDependencies": {
+    "bestzip": "2.2.0",
+    "eslint": "8.10.0",
+    "http-server": "14.1.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.5.1",
+    "rimraf": "3.0.2"
+  }
+}

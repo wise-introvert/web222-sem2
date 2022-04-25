@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+      window.addEventListener("load", () => {
+        // get first child 
+        const child1 = document.getElementById("child1");  
+        // get second child 
+        const child2 = document.getElementById("child2");  
+
+        // swap the two without using inner html
+        child1.parentNode.insertBefore(child2, child1);    
+      })
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="child1"><p>Brilliant Text</p></div>
+      <div id="child2"><p>Second Best</p></div>
+    </div>
+  </body>
+</html>
